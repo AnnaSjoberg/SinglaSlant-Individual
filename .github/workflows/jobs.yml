@@ -61,12 +61,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Get branch name
-        id: branch_name
-        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
       - name: Build image
-        run: docker build -t ghcr.io/annasjoberg/singlaslant-individual:${{ steps.branch_name.outputs.branch }} -f Dockerfile .
+        run: docker build -t ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }} -f Dockerfile .
       - name: Push image
-        run: docker push ghcr.io/annasjoberg/singlaslant-individual:${{ steps.branch_name.outputs.branch }}
+        run: docker push ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }}
 
   fake-deployment: 
     runs-on: ubuntu-latest
@@ -74,4 +73,4 @@ jobs:
 
     steps:
     - name: Fake Deployment
-      run: echo "ghcr.io/annasjoberg/singlaslant-individual:${{ steps.branch_name.outputs.branch }}"
+      run: echo "ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }}"
