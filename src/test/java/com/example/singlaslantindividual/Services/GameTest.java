@@ -1,6 +1,6 @@
-package com.example.singlaslantgithubactions.Services;
-import com.example.singlaslantgithubactions.Model.CoinFlip;
-import com.example.singlaslantgithubactions.Model.RoundResult;
+package com.example.singlaslantindividual.Services;
+import com.example.singlaslantindividual.Model.CoinFlip;
+import com.example.singlaslantindividual.Model.RoundResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

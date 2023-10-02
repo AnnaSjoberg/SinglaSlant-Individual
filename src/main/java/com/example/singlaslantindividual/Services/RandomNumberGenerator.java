@@ -1,4 +1,4 @@
-package com.example.singlaslantgithubactions.Services;
+package com.example.singlaslantindividual.Services;
 import org.springframework.stereotype.Component;
 
 //Klass för att returnera ett slumpmässigt tal

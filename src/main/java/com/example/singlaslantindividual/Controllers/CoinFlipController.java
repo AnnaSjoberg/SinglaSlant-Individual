@@ -1,10 +1,10 @@
-package com.example.singlaslantgithubactions.Controllers;
-import com.example.singlaslantgithubactions.JaCoCoUtil.Generated;
-import com.example.singlaslantgithubactions.Model.CoinFlip;
-import com.example.singlaslantgithubactions.Model.RoundResult;
-import com.example.singlaslantgithubactions.Services.Game;
-import com.example.singlaslantgithubactions.Services.RandomNumberGenerator;
-import com.example.singlaslantgithubactions.Services.WinRateCalculator;
+package com.example.singlaslantindividual.Controllers;
+import com.example.singlaslantindividual.JaCoCoUtil.Generated;
+import com.example.singlaslantindividual.Model.CoinFlip;
+import com.example.singlaslantindividual.Model.RoundResult;
+import com.example.singlaslantindividual.Services.Game;
+import com.example.singlaslantindividual.Services.RandomNumberGenerator;
+import com.example.singlaslantindividual.Services.WinRateCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

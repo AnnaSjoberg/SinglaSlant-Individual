@@ -20,7 +20,7 @@ jobs:
           chmod +x ./gradlew
 
     - name: Run unit tests
-      run: ./gradlew test
+      run: ./gradlew unitTest
 
   integration-tests:
    runs-on: ubuntu-latest

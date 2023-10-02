@@ -1,4 +1,4 @@
-package com.example.singlaslantgithubactions.Model;
+package com.example.singlaslantindividual.Model;
 
 import org.springframework.stereotype.Component;
 

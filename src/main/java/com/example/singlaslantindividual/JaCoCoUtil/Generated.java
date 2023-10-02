@@ -1,8 +1,7 @@
-package com.example.singlaslantgithubactions.JaCoCoUtil;
+package com.example.singlaslantindividual.JaCoCoUtil;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
