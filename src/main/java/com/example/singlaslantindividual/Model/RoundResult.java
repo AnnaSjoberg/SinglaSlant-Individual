@@ -1,4 +1,4 @@
-package com.example.singlaslantgithubactions.Model;
+package com.example.singlaslantindividual.Model;
 //Klass som sparar valet av "heads" eller "tails" samt vinnaren för nuvarande omgång
 //Används både i Game för spellogik samt i CoinFlipController som egen instans
 public class RoundResult {

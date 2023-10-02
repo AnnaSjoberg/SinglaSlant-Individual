@@ -1,5 +1,5 @@
-package com.example.singlaslantgithubactions.Services;
-import com.example.singlaslantgithubactions.Model.CoinFlip;
+package com.example.singlaslantindividual.Services;
+import com.example.singlaslantindividual.Model.CoinFlip;
 import org.springframework.stereotype.Component;
 
 //Klass för att räkna ut användarens vinstfrekvens i procent

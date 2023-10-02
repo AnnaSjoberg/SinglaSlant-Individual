@@ -1,6 +1,6 @@
-package com.example.singlaslantgithubactions.Services;
-import com.example.singlaslantgithubactions.Model.CoinFlip;
-import com.example.singlaslantgithubactions.Model.RoundResult;
+package com.example.singlaslantindividual.Services;
+import com.example.singlaslantindividual.Model.CoinFlip;
+import com.example.singlaslantindividual.Model.RoundResult;
 import org.springframework.stereotype.Component;
 
 //Klass som kör spelet, har en CoinFlip-klass med användarens samt datorns score, samt hur många omgångar som körts

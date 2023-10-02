@@ -4,18 +4,20 @@ plugins {
     id("io.spring.dependency-management") version "1.1.3"
     jacoco
 }
-
-tasks.test {
-    finalizedBy(tasks.jacocoTestReport) // rapport skapas efter att testerna körts
-
+//runs only unit tests (all tests not tagged as integration tests)
+task<Test>("unitTest") {
+    description = "Runs unit tests."
+    group = "verification"
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
     filter {
-        excludeTestsMatching("*IntegrationTest") //ta bort integrationstester från unit tester
+        excludeTestsMatching("*IntegrationTest") // exclude integration tests
     }
     testLogging {
         events("passed")
     }
 }
-//skapar upp en ny task för gradle för att separera unit tests - integration tests
+//runs only integration tests
 task<Test>("integrationTest") {
     description = "Runs integration tests."
     group = "verification"
@@ -28,9 +30,17 @@ task<Test>("integrationTest") {
         events("passed")
     }
 }
-tasks.jacocoTestReport {
-    dependsOn(tasks.test, tasks.named("integrationTest"))
+//runs all tests
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // rapport skapas efter att testerna körts
 
+    testLogging {
+        events("passed")
+    }
+}
+tasks.jacocoTestReport {
+    //dependsOn(tasks.test, tasks.named("unitTest"))
+    dependsOn(tasks.test)
 }
 jacoco {
     toolVersion = "0.8.9"

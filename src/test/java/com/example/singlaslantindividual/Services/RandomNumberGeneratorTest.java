@@ -1,4 +1,4 @@
-package com.example.singlaslantgithubactions.Services;
+package com.example.singlaslantindividual.Services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
