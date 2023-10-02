@@ -72,5 +72,7 @@ jobs:
     needs: docker
 
     steps:
+    - name: Get branch name
+      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
     - name: Fake Deployment
       run: echo "ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }}"
