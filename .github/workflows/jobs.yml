@@ -1,7 +1,4 @@
-on: 
-  push: 
-    branches:
-      - Development
+on: [push, pull_request]
 
 jobs: 
   unit-tests:
@@ -59,11 +56,14 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.SUPER_SECRET }}
+          password: ${{ secrets.SUPER_SECRET }} # fixa en GITHUB_TOKEN istället
+      - name: Get branch name
+        id: branch_name
+        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
       - name: Build image
-        run: docker build -t ghcr.io/umm-a/singlaslant-github-actions:Development -f Dockerfile .
+        run: docker build -t ghcr.io/annasjoberg/singlaslant-individual:${{ steps.branch_name.outputs.branch }} -f Dockerfile .
       - name: Push image
-        run: docker push ghcr.io/umm-a/singlaslant-github-actions:Development
+        run: docker push ghcr.io/annasjoberg/singlaslant-individual:${{ steps.branch_name.outputs.branch }}
 
   fake-deployment: 
     runs-on: ubuntu-latest
