@@ -1,0 +1,54 @@
+name: Send to Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch Common Configuration
+        uses: ./.github/workflows/common-config.yml
+
+      - name: Run unit tests
+        run: ./gradlew unitTest
+
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch Common Configuration
+        uses: ./.github/workflows/common-config.yml
+
+      - name: Run integration tests
+        run: ./gradlew integrationTest
+
+  docker:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build image
+        run: docker build -t ghcr.io/annasjoberg/singlaslant-individual:latest -f Dockerfile .
+      - name: Push image
+        run: docker push ghcr.io/annasjoberg/singlaslant-individual:latest
+
+  mock-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock Deployment
+        run: echo "ghcr.io/annasjoberg/singlaslant-individual:latest"
