@@ -1,4 +1,6 @@
-on: [push, pull_request]
+name: Send to Staging
+
+on: push
 
 jobs: 
   unit-tests:
