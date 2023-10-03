@@ -1,6 +1,12 @@
 name: Send to Staging
 
-on: push
+on:
+  push:
+    branches:
+      - feat_*
+      - bugfix_*
+      - hotfix_*
+
 
 jobs: 
   unit-tests:
@@ -26,7 +32,6 @@ jobs:
 
   integration-tests:
    runs-on: ubuntu-latest
-   needs: unit-tests
 
    steps:
     - name: Checkout code
@@ -48,7 +53,6 @@ jobs:
 
   docker: 
     runs-on: ubuntu-latest
-    needs: integration-tests
     permissions:
       contents: read
       packages: write
