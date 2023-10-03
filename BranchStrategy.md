@@ -1,7 +1,7 @@
 # Branch Strategy
 - All work is done in feature branches, which are merged into 'Staging' via Pull request (PR)
 - When ready to move into production 'Staging' is merged into 'Main' via PR
-- Naming convention: branch is named after the feature developed, or marked as Bugfix/Hotfix
+- Naming convention: branches is named after the feature developed (or fixed), and prefixed with 'feat_'/'hotfix_'/'bugfix_'
 - Before PR branch must be up-to-date
 - In PR write a short description of changes suggested
 - All communication about suggested changes take place as comments etc. in the PR

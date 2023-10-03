@@ -1,0 +1,63 @@
+name: Send to Staging
+
+on:
+  push:
+    branches:
+      - feat_*
+      - bugfix_*
+      - hotfix_*
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Common Configuration
+        uses: ./.github/workflows/common-config.yml # Specify the path to your common-config.yml file
+
+      - name: Run unit tests
+        run: ./gradlew unitTest
+
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Common Configuration
+        uses: ./.github/workflows/common-config.yml
+
+      - name: Run integration tests
+        run: ./gradlew integrationTest
+
+  docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get branch name
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+      - name: Build image
+        run: docker build -t ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }} -f Dockerfile .
+      - name: Push image
+        run: docker push ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }}
+
+  fake-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Common Configuration
+        uses: ./.github/workflows/common-config.yml
+
+      - name: Get branch name
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+      - name: Fake Deployment
+        run: echo "ghcr.io/annasjoberg/singlaslant-individual:${{ env.branch }}"
