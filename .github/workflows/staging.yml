@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Trigger Common Configuration
-        uses: ./.github/workflows/common-config.yml # Specify the path to your common-config.yml file
+        uses: ./common-config.yml # Specify the path to your common-config.yml file
 
       - name: Run unit tests
         run: ./gradlew unitTest
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Trigger Common Configuration
-        uses: ./.github/workflows/common-config.yml
+        uses: ./common-config.yml
 
       - name: Run integration tests
         run: ./gradlew integrationTest
@@ -54,9 +54,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Common Configuration
-        uses: ./.github/workflows/common-config.yml
-
       - name: Get branch name
         run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
       - name: Fake Deployment
