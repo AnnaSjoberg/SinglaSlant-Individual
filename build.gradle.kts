@@ -88,6 +88,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation ("io.rest-assured:rest-assured:5.3.2")
+    testImplementation("io.rest-assured:spring-mock-mvc:5.3.2")
+
 }
 
 tasks.withType<Test> {
