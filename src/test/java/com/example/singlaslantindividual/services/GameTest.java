@@ -176,12 +176,17 @@ class GameTest {
     }
 
     @Test
-    void validateChoiceValidShouldReturnTrue(){
+    void invalidChoiceReturnsNull() {
+        assertNull(game.playGame("invalid choice", 0.5));
+    }
+
+    @Test
+    void validateChoiceValidShouldReturnTrue() {
         assertTrue(game.validateChoice("heads"));
     }
 
     @Test
-    void validateChoiceInvalidShouldReturnFalse(){
+    void validateChoiceInvalidShouldReturnFalse() {
         assertFalse(game.validateChoice("tummy"));
     }
 }
