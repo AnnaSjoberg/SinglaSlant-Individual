@@ -1,7 +1,11 @@
-package com.example.singlaslantindividual.Services;
+package com.example.singlaslantindividual.services;
+
 import org.springframework.stereotype.Component;
 
-//Klass för att returnera ett slumpmässigt tal
+/**
+ *Class for generating a random number 0-1
+ */
+
 @Component
 public class RandomNumberGenerator {
 

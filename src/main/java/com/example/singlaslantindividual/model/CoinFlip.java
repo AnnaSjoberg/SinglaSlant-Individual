@@ -1,13 +1,16 @@
-package com.example.singlaslantindividual.Model;
+package com.example.singlaslantindividual.model;
 
 import org.springframework.stereotype.Component;
 
-//Klass som håller koll på användarens samt datorns score, samt hur många omgångar som körts
+/**
+ * Class for keeping track of User's and Computer's score, and number of played rounds
+ */
+
 @Component
 public class CoinFlip {
     private int userScore = 0;
     private int computerScore = 0;
-    private int turns = 0;
+    private int rounds = 0;
 
     public int getUserScore() {
         return userScore;
@@ -25,11 +28,11 @@ public class CoinFlip {
         this.computerScore = computerScore;
     }
 
-    public int getTurns() {
-        return turns;
+    public int getRounds() {
+        return rounds;
     }
 
-    public void setTurns(int turns) {
-        this.turns = turns;
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
     }
 }

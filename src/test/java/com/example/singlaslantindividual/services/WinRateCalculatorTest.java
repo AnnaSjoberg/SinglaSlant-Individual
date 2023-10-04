@@ -1,8 +1,10 @@
-package com.example.singlaslantindividual.Services;
-import com.example.singlaslantindividual.Model.CoinFlip;
+package com.example.singlaslantindividual.services;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.example.singlaslantindividual.model.CoinFlip;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinRateCalculatorTest {
 
@@ -10,7 +12,7 @@ class WinRateCalculatorTest {
     CoinFlip coinFlip;
 
     @BeforeEach
-    void setup (){
+    void setup() {
         winRateCalculator = new WinRateCalculator();
         coinFlip = new CoinFlip();
     }
@@ -22,21 +24,21 @@ class WinRateCalculatorTest {
 
     @Test
     void whenUserHasWonAllWinRateIs100() {
-        coinFlip.setTurns(1);
+        coinFlip.setRounds(1);
         coinFlip.setUserScore(1);
         assertEquals(winRateCalculator.calculateWinRate(coinFlip), 100);
     }
 
     @Test
     void whenUserHasLostAllWinRateIsZero() {
-        coinFlip.setTurns(1);
+        coinFlip.setRounds(1);
         coinFlip.setUserScore(0);
         assertEquals(winRateCalculator.calculateWinRate(coinFlip), 0);
     }
 
     @Test
     void whenUserHasWonHalfWinRateIs50() {
-        coinFlip.setTurns(2);
+        coinFlip.setRounds(2);
         coinFlip.setUserScore(1);
         assertEquals(winRateCalculator.calculateWinRate(coinFlip), 50);
     }

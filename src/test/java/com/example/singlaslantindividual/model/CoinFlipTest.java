@@ -1,11 +1,14 @@
-package com.example.singlaslantindividual.Model;
+package com.example.singlaslantindividual.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CoinFlipTest {
 
     CoinFlip coinFlip;
+
     @BeforeEach
     void setUp() {
         coinFlip = new CoinFlip();
@@ -35,12 +38,12 @@ class CoinFlipTest {
 
     @Test
     void testGetTurns() {
-        assertEquals(0, coinFlip.getTurns());
+        assertEquals(0, coinFlip.getRounds());
     }
 
     @Test
     void testSetTurns() {
-        coinFlip.setTurns(5);
-        assertEquals(5, coinFlip.getTurns());
+        coinFlip.setRounds(5);
+        assertEquals(5, coinFlip.getRounds());
     }
 }
