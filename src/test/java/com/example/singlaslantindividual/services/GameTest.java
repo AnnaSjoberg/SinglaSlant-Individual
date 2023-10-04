@@ -1,12 +1,16 @@
-package com.example.singlaslantindividual.Services;
-import com.example.singlaslantindividual.Model.CoinFlip;
-import com.example.singlaslantindividual.Model.RoundResult;
+package com.example.singlaslantindividual.services;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.example.singlaslantindividual.model.CoinFlip;
+import com.example.singlaslantindividual.model.RoundResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
@@ -128,35 +132,37 @@ class GameTest {
 
     @Test
     void whenComputerWinsTurnsIncreases() {
-        int oldTurns = coinFlip.getTurns();
+        int oldTurns = coinFlip.getRounds();
         game.updateCoinFlip("Computer");
-        assertTrue(oldTurns < coinFlip.getTurns());
+        assertTrue(oldTurns < coinFlip.getRounds());
     }
 
     @Test
     void whenUserWinsTurnsIncreases() {
-        int oldTurns = coinFlip.getTurns();
+        int oldTurns = coinFlip.getRounds();
         game.updateCoinFlip("User");
-        assertTrue(oldTurns < coinFlip.getTurns());
+        assertTrue(oldTurns < coinFlip.getRounds());
     }
 
     @Test
-    void invalidWinnerInputDoesNotChangeUserScore(){
+    void invalidWinnerInputDoesNotChangeUserScore() {
         int oldScore = coinFlip.getUserScore();
         game.updateCoinFlip("");
         assertEquals(oldScore, coinFlip.getUserScore());
     }
+
     @Test
     void invalidWinnerInputDoesNotChangeComputerScore() {
         int oldScore = coinFlip.getComputerScore();
         game.updateCoinFlip("");
         assertEquals(oldScore, coinFlip.getComputerScore());
     }
+
     @Test
     void invalidWinnerInputDoesNotChangeTurns() {
-        int oldTurns = coinFlip.getTurns();
+        int oldTurns = coinFlip.getRounds();
         game.updateCoinFlip("");
-        assertEquals(oldTurns, coinFlip.getTurns());
+        assertEquals(oldTurns, coinFlip.getRounds());
     }
 
     @Test

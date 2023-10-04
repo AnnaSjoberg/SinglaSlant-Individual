@@ -1,14 +1,17 @@
-package com.example.singlaslantindividual.Model;
+package com.example.singlaslantindividual.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RoundResultTest {
 
     RoundResult roundResult;
+
     @BeforeEach
-    void setUp(){
-        roundResult = new RoundResult("heads", "tails","Computer");
+    void setUp() {
+        roundResult = new RoundResult("heads", "tails", "Computer");
     }
 
     @Test

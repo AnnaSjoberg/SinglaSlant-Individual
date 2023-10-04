@@ -1,21 +1,31 @@
-package com.example.singlaslantindividual.Controllers;
-import com.example.singlaslantindividual.JaCoCoUtil.Generated;
-import com.example.singlaslantindividual.Model.CoinFlip;
-import com.example.singlaslantindividual.Model.RoundResult;
-import com.example.singlaslantindividual.Services.Game;
-import com.example.singlaslantindividual.Services.RandomNumberGenerator;
-import com.example.singlaslantindividual.Services.WinRateCalculator;
+package com.example.singlaslantindividual.controllers;
+
+import com.example.singlaslantindividual.jacocoutil.Generated;
+import com.example.singlaslantindividual.model.CoinFlip;
+import com.example.singlaslantindividual.model.RoundResult;
+import com.example.singlaslantindividual.services.Game;
+import com.example.singlaslantindividual.services.RandomNumberGenerator;
+import com.example.singlaslantindividual.services.WinRateCalculator;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
-import java.util.List;
 
-//Klass som tillhandahåller endpoints för spelet
-//Innefattar instanser av klasserna Game, WinRateCalculator, RoundResult samt RandomNumberGenerator
+/**
+ * Class that contols the endpoints for the game
+ * Holds instantiated objects of classes
+ * - Game
+ * - WinRateCalculator
+ * - RoundResult
+ * - RandomNumberGenerator
+ * <p>
+ * Is excluded from the JaCoCo test report
+ */
+
 @Controller
 @Generated
 public class CoinFlipController {
@@ -26,10 +36,11 @@ public class CoinFlipController {
     private final RandomNumberGenerator randomNumberGenerator;
 
     @Autowired
-    public CoinFlipController(Game game, WinRateCalculator winRateCalculator, RandomNumberGenerator randomNumberGenerator) {
+    public CoinFlipController(Game game, WinRateCalculator winRateCalculator,
+                              RandomNumberGenerator randomNumberGenerator) {
         this.game = game;
         this.winRateCalculator = winRateCalculator;
-        this.randomNumberGenerator=randomNumberGenerator;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
     //Startsida där användaren väljer heads/tails
@@ -40,7 +51,7 @@ public class CoinFlipController {
 
         model.addAttribute("userScore", coinFlip.getUserScore());
         model.addAttribute("computerScore", coinFlip.getComputerScore());
-        model.addAttribute("turns", coinFlip.getTurns());
+        model.addAttribute("turns", coinFlip.getRounds());
         model.addAttribute("winRate", winRate);
         return "index";
     }
@@ -58,7 +69,7 @@ public class CoinFlipController {
         model.addAttribute("WINNER", roundResult.getWinner() + " WINS!!!!!");
         model.addAttribute("userScore", game.getCoinFlip().getUserScore());
         model.addAttribute("computerScore", game.getCoinFlip().getComputerScore());
-        model.addAttribute("turns", game.getCoinFlip().getTurns());
+        model.addAttribute("turns", game.getCoinFlip().getRounds());
         model.addAttribute("winRate", winRate);
 
         return "index";

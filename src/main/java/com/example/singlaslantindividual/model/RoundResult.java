@@ -1,6 +1,10 @@
-package com.example.singlaslantindividual.Model;
-//Klass som sparar valet av "heads" eller "tails" samt vinnaren för nuvarande omgång
-//Används både i Game för spellogik samt i CoinFlipController som egen instans
+package com.example.singlaslantindividual.model;
+
+/**
+ * Class that stores user's choice (heads/tails) along with the winner of the current round.
+ * Is used in both Game for gaming logic, and in the Coinflip'controller as an instantiated object
+ */
+
 public class RoundResult {
     private String userChoice;
     private String computerChoice;
