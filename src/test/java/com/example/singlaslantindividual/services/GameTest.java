@@ -1,9 +1,5 @@
 package com.example.singlaslantindividual.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.model.RoundResult;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
@@ -168,5 +166,22 @@ class GameTest {
     @Test
     void getCoinFlip() {
         assertNotNull(game.getCoinFlip());
+    }
+
+    @Test
+    void invalidChoiceDoesNotCount() {
+        int oldTurns = coinFlip.getTurns();
+        game.playGame("invalid choice", 0.5);
+        assertEquals(oldTurns, coinFlip.getTurns());
+    }
+
+    @Test
+    void validateChoiceValidShouldReturnTrue(){
+        assertTrue(game.validateChoice("heads"));
+    }
+
+    @Test
+    void validateChoiceInvalidShouldReturnFalse(){
+        assertFalse(game.validateChoice("tummy"));
     }
 }

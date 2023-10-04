@@ -66,4 +66,7 @@ public class Game {
         return coinFlip;
     }
 
+    public boolean validateChoice(String choice) {
+        return (choice.equals("heads")||choice.equals("tails"));
+    }
 }
