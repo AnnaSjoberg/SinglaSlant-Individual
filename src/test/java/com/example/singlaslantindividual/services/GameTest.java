@@ -132,16 +132,16 @@ class GameTest {
 
     @Test
     void whenComputerWinsTurnsIncreases() {
-        int oldTurns = coinFlip.getRounds();
+        int oldTurns = coinFlip.getTurns();
         game.updateCoinFlip("Computer");
-        assertTrue(oldTurns < coinFlip.getRounds());
+        assertTrue(oldTurns < coinFlip.getTurns());
     }
 
     @Test
     void whenUserWinsTurnsIncreases() {
-        int oldTurns = coinFlip.getRounds();
+        int oldTurns = coinFlip.getTurns();
         game.updateCoinFlip("User");
-        assertTrue(oldTurns < coinFlip.getRounds());
+        assertTrue(oldTurns < coinFlip.getTurns());
     }
 
     @Test
@@ -160,9 +160,9 @@ class GameTest {
 
     @Test
     void invalidWinnerInputDoesNotChangeTurns() {
-        int oldTurns = coinFlip.getRounds();
+        int oldTurns = coinFlip.getTurns();
         game.updateCoinFlip("");
-        assertEquals(oldTurns, coinFlip.getRounds());
+        assertEquals(oldTurns, coinFlip.getTurns());
     }
 
     @Test

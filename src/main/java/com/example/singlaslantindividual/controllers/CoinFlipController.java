@@ -51,7 +51,7 @@ public class CoinFlipController {
 
         model.addAttribute("userScore", coinFlip.getUserScore());
         model.addAttribute("computerScore", coinFlip.getComputerScore());
-        model.addAttribute("turns", coinFlip.getRounds());
+        model.addAttribute("turns", coinFlip.getTurns());
         model.addAttribute("winRate", winRate);
         return "index";
     }
@@ -66,10 +66,10 @@ public class CoinFlipController {
 
         rounds.add(roundResult);
         model.addAttribute("rounds", rounds);
-        model.addAttribute("WINNER", roundResult.getWinner() + " WINS!!!!!");
+        model.addAttribute("Result", roundResult.getWinner() + " WINS!!!!!");
         model.addAttribute("userScore", game.getCoinFlip().getUserScore());
         model.addAttribute("computerScore", game.getCoinFlip().getComputerScore());
-        model.addAttribute("turns", game.getCoinFlip().getRounds());
+        model.addAttribute("turns", game.getCoinFlip().getTurns());
         model.addAttribute("winRate", winRate);
 
         return "index";

@@ -38,12 +38,12 @@ class CoinFlipTest {
 
     @Test
     void testGetTurns() {
-        assertEquals(0, coinFlip.getRounds());
+        assertEquals(0, coinFlip.getTurns());
     }
 
     @Test
     void testSetTurns() {
-        coinFlip.setRounds(5);
-        assertEquals(5, coinFlip.getRounds());
+        coinFlip.setTurns(5);
+        assertEquals(5, coinFlip.getTurns());
     }
 }

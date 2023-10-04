@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 public class WinRateCalculator {
 
     public double calculateWinRate(CoinFlip coinFlip) {
-        if (coinFlip.getRounds() == 0) {
+        if (coinFlip.getTurns() == 0) {
             return 0.0;
         }
-        return ((double) coinFlip.getUserScore() / coinFlip.getRounds()) * 100;
+        return ((double) coinFlip.getUserScore() / coinFlip.getTurns()) * 100;
     }
 }
 
