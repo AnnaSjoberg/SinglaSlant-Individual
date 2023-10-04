@@ -54,6 +54,11 @@ jobs:
       - name: Make Gradlew Executable
         run: |
           chmod +x ./gradlew
+      - name: Start Application
+        run: |
+          ./gradlew bootRun &
+          echo "Application started"
+          sleep 10
       - name: Run API tests
         run: ./gradlew clean apiTest
 
