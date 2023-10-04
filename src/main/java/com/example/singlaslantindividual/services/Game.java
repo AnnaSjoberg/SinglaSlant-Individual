@@ -1,17 +1,24 @@
-package com.example.singlaslantindividual.Services;
-import com.example.singlaslantindividual.Model.CoinFlip;
-import com.example.singlaslantindividual.Model.RoundResult;
+package com.example.singlaslantindividual.services;
+
+import com.example.singlaslantindividual.model.CoinFlip;
+import com.example.singlaslantindividual.model.RoundResult;
 import org.springframework.stereotype.Component;
 
-//Klass som kör spelet, har en CoinFlip-klass med användarens samt datorns score, samt hur många omgångar som körts
-// i Game-klassen sköts logik för att:
-// - välja heads/tails
-// - sätta datorns val av heads/tails beroende på användares(user's) input
-// - se vem som vann, user/computer
-// - uppdatera coinFlip's variabler till de aktuella värdena
+/**
+ * A class that manages the game, using a CoinFlip instance to track user and computer scores,
+ * as well as the number of rounds played.
+ *
+ * The Game class handles the logic for:
+ * - Selecting 'heads' or 'tails.'
+ * - Setting the computer's choice of 'heads' or 'tails' based on user input.
+ * - Determining the winner between the user and computer.
+ * - Updating the CoinFlip instance's variables with the current values.
+ */
+
 @Component
 public class Game {
     private final CoinFlip coinFlip;
+
     public Game(CoinFlip coinFlip) {
         this.coinFlip = coinFlip;
     }
@@ -52,7 +59,7 @@ public class Game {
             default:
                 return;
         }
-        coinFlip.setTurns(coinFlip.getTurns() + 1);
+        coinFlip.setRounds(coinFlip.getRounds() + 1);
     }
 
     public CoinFlip getCoinFlip() {

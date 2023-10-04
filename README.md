@@ -2,6 +2,15 @@
 GitHub Actions school project
 
 # Terminal commands for testing:
-- All tests: ./gradlew test
 - Unit tests: ./gradlew unitTest
 - Integration tests: ./gradlew integrationTest
+- Both Unit and Integration tests: ./gradlew test
+
+# Generating a JaCoCo test report:
+- Terminal command: ./gradlew test jacocotestreport
+- Report is generated at build/jacocoHtml/index.html
+- Open report in browser
+
+# Terminal commands for Checkstyle:
+- Checking main code: ./gradlew checkstyleMain
+- Checking tests: ./gradlew checkstyleTest

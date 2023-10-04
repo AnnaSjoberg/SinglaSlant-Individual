@@ -3,7 +3,23 @@ plugins {
     id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.3"
     jacoco
+    checkstyle
 }
+checkstyle {
+    configFile = file("checkstyle/custom_checks.xml")
+    toolVersion = "10.12.4"
+    reportsDir = file("${project.buildDir}/checkstyle")
+    maxErrors = 0
+    maxWarnings = 5
+}
+tasks.withType<Checkstyle>().configureEach {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+        // html.stylesheet = resources.text.fromFile("config/xsl/checkstyle-custom.xsl")
+    }
+}
+
 //runs only unit tests (all tests not tagged as integration tests)
 task<Test>("unitTest") {
     description = "Runs unit tests."
