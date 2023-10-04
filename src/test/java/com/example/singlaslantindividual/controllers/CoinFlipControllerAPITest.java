@@ -52,6 +52,6 @@ public class CoinFlipControllerAPITest {
                 .post("/flip")
                 .then()
                 .statusCode(200)
-                .body("WINNER", containsString("WINS!!!!!"));
+                .body(containsString("WINS!!!!!"));
     }
 }
