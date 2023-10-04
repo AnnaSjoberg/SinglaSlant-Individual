@@ -28,6 +28,7 @@ task<Test>("unitTest") {
     classpath = sourceSets.test.get().runtimeClasspath
     filter {
         excludeTestsMatching("*IntegrationTest") // exclude integration tests
+        excludeTestsMatching("*ApiTest") // exclude api tests
     }
     testLogging {
         events("passed")
@@ -45,17 +46,28 @@ task<Test>("integrationTest") {
     testLogging {
         events("passed")
     }
+}//runs only API tests
+task<Test>("apiTest") {
+    description = "Runs API tests."
+    group = "verification"
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+    filter {
+        includeTestsMatching("*ApiTest")
+    }
+    testLogging {
+        events("passed")
+    }
 }
 //runs all tests
 tasks.test {
-    finalizedBy(tasks.jacocoTestReport) // rapport skapas efter att testerna körts
+    finalizedBy(tasks.jacocoTestReport)
 
     testLogging {
         events("passed")
     }
 }
 tasks.jacocoTestReport {
-    //dependsOn(tasks.test, tasks.named("unitTest"))
     dependsOn(tasks.test)
 }
 jacoco {
