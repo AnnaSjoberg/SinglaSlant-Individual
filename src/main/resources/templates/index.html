@@ -18,7 +18,7 @@
 
 <h2>Round Results</h2>
 <!-- Display the WINNER -->
-<div th:text="${WINNER}"></div>
+<div th:text="${Result}"></div>
 <table>
     <tr>
         <th>Round</th>
@@ -40,7 +40,7 @@
 <h2>Scores</h2>
 <p>User Score: <span th:text="${userScore}"></span></p>
 <p>Computer Score: <span th:text="${computerScore}"></span></p>
-<p>Turns: <span th:text="${rounds}"></span></p>
+<p>Turns: <span th:text="${turns}"></span></p>
 <p>Win Rate: <span th:text="${winRate}"></span>%</p>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class CoinFlipControllerAPITest {
     }
 
     @Test
-    public void publishFlipEndpointShouldContainWinnerOnOk() {
+    public void onOkPublishFlipEndpointShouldContainWinsWhenChoiceIsValid() {
         given()
                 .param("choice", "heads") // Set the request parameter as needed
                 .when()
@@ -54,4 +54,24 @@ public class CoinFlipControllerAPITest {
                 .statusCode(200)
                 .body(containsString("WINS!!!!!"));
     }
+    @Test
+    public void onOkPublishFlipEndpointShouldContainNotAllowedWhenChoiceIsInvalid() {
+        given()
+                .param("choice", "tummy") // Set the request parameter as needed
+                .when()
+                .post("/flip")
+                .then()
+                .statusCode(200)
+                .body(containsString("not allowed"));
+    }
+
+    @Test
+    public void flipEndpointWithoutChoiceReturns405() {
+        given()
+                .when()
+                .get("/flip")
+                .then()
+                .statusCode(405);
+    }
+
 }

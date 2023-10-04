@@ -59,7 +59,7 @@ public class Game {
             default:
                 return;
         }
-        coinFlip.setRounds(coinFlip.getRounds() + 1);
+        coinFlip.setTurns(coinFlip.getTurns() + 1);
     }
 
     public CoinFlip getCoinFlip() {
