@@ -1,5 +1,11 @@
 package com.example.singlaslantindividual.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.model.RoundResult;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,8 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 

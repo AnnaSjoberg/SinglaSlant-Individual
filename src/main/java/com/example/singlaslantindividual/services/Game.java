@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * A class that manages the game, using a CoinFlip instance to track user and computer scores,
  * as well as the number of rounds played.
- *
+ * <p>
  * The Game class handles the logic for:
  * - Selecting 'heads' or 'tails.'
  * - Setting the computer's choice of 'heads' or 'tails' based on user input.
@@ -70,6 +70,6 @@ public class Game {
     }
 
     public boolean validateChoice(String choice) {
-        return (choice.equals("heads")||choice.equals("tails"));
+        return (choice.equals("heads") || choice.equals("tails"));
     }
 }
