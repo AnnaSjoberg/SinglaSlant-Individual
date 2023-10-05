@@ -57,16 +57,21 @@ public class CoinFlipController {
     }
 
     //När användaren valt heads/tails uppdateras sidan med relevant information i /flip-endpointen
-    //Användaren fortsätter spela så många omgångar han/hon vill
+    //Användaren fortsätter spela så många omgångar hen vill
     @PostMapping("/flip")
     public String publishFlip(@RequestParam String choice, Model model) {
         double resultAsDouble = randomNumberGenerator.generateRandomNumber();
         RoundResult roundResult = game.playGame(choice, resultAsDouble);
         double winRate = winRateCalculator.calculateWinRate(game.getCoinFlip());
-
-        rounds.add(roundResult);
+        String result = "";
+        if (roundResult == null) {
+            result = choice + " is not a valid choice. Please try again!";
+        } else {
+            result = roundResult.getWinner() + " WINS!!!!!";
+            rounds.add(roundResult);
+        }
         model.addAttribute("rounds", rounds);
-        model.addAttribute("Result", roundResult.getWinner() + " WINS!!!!!");
+        model.addAttribute("Result", result);
         model.addAttribute("userScore", game.getCoinFlip().getUserScore());
         model.addAttribute("computerScore", game.getCoinFlip().getComputerScore());
         model.addAttribute("turns", game.getCoinFlip().getTurns());

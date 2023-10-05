@@ -1,7 +1,9 @@
 package com.example.singlaslantindividual.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.example.singlaslantindividual.model.CoinFlip;
@@ -168,5 +170,27 @@ class GameTest {
     @Test
     void getCoinFlip() {
         assertNotNull(game.getCoinFlip());
+    }
+
+    @Test
+    void invalidChoiceDoesNotCount() {
+        int oldTurns = coinFlip.getTurns();
+        game.playGame("invalid choice", 0.5);
+        assertEquals(oldTurns, coinFlip.getTurns());
+    }
+
+    @Test
+    void invalidChoiceReturnsNull() {
+        assertNull(game.playGame("invalid choice", 0.5));
+    }
+
+    @Test
+    void validateChoiceValidShouldReturnTrue() {
+        assertTrue(game.validateChoice("heads"));
+    }
+
+    @Test
+    void validateChoiceInvalidShouldReturnFalse() {
+        assertFalse(game.validateChoice("tummy"));
     }
 }

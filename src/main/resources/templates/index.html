@@ -32,7 +32,7 @@
         <td th:text="${round.computerChoice}"></td>
         <td>
             Winner: <span th:text="${round.winner}"></span><br>
-            Choice: <span th:text="${round.winner == 'User' ? round.userChoice : round.computerChoice}"></span>
+            With: <span th:text="${round.winner == 'User' ? round.userChoice : round.computerChoice}"></span>
         </td>
     </tr>
 </table>
@@ -40,7 +40,7 @@
 <h2>Scores</h2>
 <p>User Score: <span th:text="${userScore}"></span></p>
 <p>Computer Score: <span th:text="${computerScore}"></span></p>
-<p>Turns: <span th:text="${turns}"></span></p>
+<p>Turns: <span id="turnsValue" th:text="${turns}"></span></p>
 <p>Win Rate: <span th:text="${winRate}"></span>%</p>
 </body>
 </html>
