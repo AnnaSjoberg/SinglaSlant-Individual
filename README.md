@@ -2,10 +2,10 @@
 GitHub Actions school project
 
 # Terminal commands for testing:
-- Unit tests: ./gradlew unitTest
-- Integration tests: ./gradlew integrationTest
-- API tests: ./gradlew apiTest
-- All tests: ./gradlew test
+- Unit tests: ./gradlew clean unitTest
+- Integration tests: ./gradlew clean integrationTest
+- API tests: ./gradlew clean apiTest
+- All tests: ./gradlew clean test
 
 # Generating a JaCoCo test report:
 - Terminal command: ./gradlew test jacocotestreport
