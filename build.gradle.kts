@@ -138,7 +138,7 @@ tasks.jacocoTestReport {
 checkstyle {
     configFile = file("checkstyle/custom_checks.xml")
     toolVersion = "10.12.4"
-    val output: Provider<Directory> = layout.buildDirectory.dir("/checkstyle")
+    val output: Provider<Directory> = layout.buildDirectory.dir("checkstyle")
     reportsDir = output.get().asFile
     maxErrors = 0
     maxWarnings = 5
