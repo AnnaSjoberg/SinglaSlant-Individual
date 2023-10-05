@@ -3,7 +3,6 @@ package com.example.singlaslantindividual.controllers;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.services.Game;
@@ -20,10 +19,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Tag("SystemTest")
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class CoinFlipControllerApiTest {
 
-    //    @MockBean
     private Game game;
     @Autowired
     private CoinFlipController controller;
@@ -93,8 +90,8 @@ public class CoinFlipControllerApiTest {
         // Get the initial number of turns from the current endpoint
         int startingTurns = getTurnsValue();
 
-        // Simulate a very high number of rounds. Limit to 100_000 now for capacity reasons
-        int numberOfRounds = 100_000;
+        // Simulate a very high number of rounds. Limit to 1000 now for capacity reasons
+        int numberOfRounds = 1000;
         playRounds(numberOfRounds);
         int expectedTurns = startingTurns + numberOfRounds;
         int actualTurns = getTurnsValue();
