@@ -82,7 +82,7 @@ jobs:
   build_push_image:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Checkout code
@@ -92,6 +92,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/annasjoberg/singlaslant-individual
+          flavor: |
+            latest=auto  # Handle latest tag automatically
       - name: Docker Login
         uses: docker/login-action@v3
         with:
@@ -103,13 +105,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}, latest
+          tags: ${{ steps.meta.outputs.tags }}, ghcr.io/annasjoberg/singlaslant-individual:latest
 
   mock-deployment:
     runs-on: ubuntu-latest
     needs: build_push_image
     steps:
       - name: Mock Deployment
-        run: |
-          echo "ghcr.io/annasjoberg/singlaslant-individual:${{ steps.meta.outputs.tags }}"
-          echo "ghcr.io/annasjoberg/singlaslant-individual:latest"
+        run: echo "ghcr.io/annasjoberg/singlaslant-individual:latest"
