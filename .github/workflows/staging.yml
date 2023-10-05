@@ -81,10 +81,9 @@ jobs:
       - name: Build and Push Test Image
         run: |
           docker buildx create --use
-          docker buildx build -t ghcr.io/annasjoberg/singlaslant-individual-test:${{ env.branch }} -f Dockerfile .
+          docker buildx build -t ghcr.io/annasjoberg/singlaslant-individual-test:${{ env.branch }} -f Dockerfile . --push
           echo "Test image built and pushed"
-      - name: Push image
-        run: docker push ghcr.io/annasjoberg/singlaslant-individual-test:${{ env.branch }}
+      
 
   mock-deployment: 
     runs-on: ubuntu-latest
