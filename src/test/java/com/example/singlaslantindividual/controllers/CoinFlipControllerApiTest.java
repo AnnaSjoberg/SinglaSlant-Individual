@@ -2,30 +2,35 @@ package com.example.singlaslantindividual.controllers;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.services.Game;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import org.jsoup.Jsoup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @Tag("SystemTest")
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class CoinFlipControllerApiTest {
 
-    @MockBean
+    //    @MockBean
     private Game game;
     @Autowired
     private CoinFlipController controller;
 
     @BeforeEach
     public void setup() {
+        game = new Game(new CoinFlip());
         RestAssuredMockMvc.standaloneSetup(controller);
     }
 
@@ -81,6 +86,54 @@ public class CoinFlipControllerApiTest {
                 .post("/flip")
                 .then()
                 .statusCode(400);
+    }
+
+    @Test
+    public void testHighNumberOfRounds() {
+        // Get the initial number of turns from the current endpoint
+        int startingTurns = getTurnsValue();
+
+        // Simulate a very high number of rounds. Limit to 100_000 now for capacity reasons
+        int numberOfRounds = 100_000;
+        playRounds(numberOfRounds);
+        int expectedTurns = startingTurns + numberOfRounds;
+        int actualTurns = getTurnsValue();
+
+        // Verify that the number of turns has increased accordingly
+        assertEquals(expectedTurns, actualTurns);
+    }
+
+    private int getTurnsValue() {
+        String responseBody = given()
+                .when()
+                .get("/")
+                .then()
+                .statusCode(200)
+                .extract().response().getBody().asString();
+
+        String turnsValue = parseTurnsValue(responseBody);
+        return Integer.parseInt(turnsValue);
+    }
+
+    private void playRounds(int numberOfRounds) {
+        for (int i = 0; i < numberOfRounds; i++) {
+            String choice = (i % 2 == 0) ? "heads" : "tails";
+            simulateRound(choice);
+        }
+    }
+
+    private String parseTurnsValue(String responseBody) {
+        return Jsoup.parse(responseBody)
+                .select("#turnsValue").text();
+    }
+
+    private void simulateRound(String choice) {
+        given()
+                .param("choice", choice)
+                .when()
+                .post("/flip")
+                .then()
+                .statusCode(200);
     }
 
 }
