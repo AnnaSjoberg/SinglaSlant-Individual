@@ -66,12 +66,21 @@ public class CoinFlipControllerApiTest {
     }
 
     @Test
-    public void flipEndpointWithoutChoiceReturns405() {
+    public void getFlipEndpointWithoutChoiceReturns405() {
         given()
                 .when()
                 .get("/flip")
                 .then()
                 .statusCode(405);
+    }
+
+    @Test
+    public void postFlipEndpointWithoutChoiceReturns400() {
+        given()
+                .when()
+                .post("/flip")
+                .then()
+                .statusCode(400);
     }
 
 }
