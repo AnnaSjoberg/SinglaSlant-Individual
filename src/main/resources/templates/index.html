@@ -32,7 +32,7 @@
         <td th:text="${round.computerChoice}"></td>
         <td>
             Winner: <span th:text="${round.winner}"></span><br>
-            Choice: <span th:text="${round.winner == 'User' ? round.userChoice : round.computerChoice}"></span>
+            With: <span th:text="${round.winner == 'User' ? round.userChoice : round.computerChoice}"></span>
         </td>
     </tr>
 </table>

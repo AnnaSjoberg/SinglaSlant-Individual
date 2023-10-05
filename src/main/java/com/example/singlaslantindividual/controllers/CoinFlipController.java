@@ -6,10 +6,8 @@ import com.example.singlaslantindividual.model.RoundResult;
 import com.example.singlaslantindividual.services.Game;
 import com.example.singlaslantindividual.services.RandomNumberGenerator;
 import com.example.singlaslantindividual.services.WinRateCalculator;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,25 +57,7 @@ public class CoinFlipController {
     }
 
     //När användaren valt heads/tails uppdateras sidan med relevant information i /flip-endpointen
-    //Användaren fortsätter spela så många omgångar han/hon vill
-/*    @PostMapping("/flip")
-    public String publishFlip(@RequestParam String choice, Model model) {
-        double resultAsDouble = randomNumberGenerator.generateRandomNumber();
-        RoundResult roundResult = game.playGame(choice, resultAsDouble);
-        double winRate = winRateCalculator.calculateWinRate(game.getCoinFlip());
-
-        rounds.add(roundResult);
-        model.addAttribute("rounds", rounds);
-        model.addAttribute("Result", roundResult.getWinner() + " WINS!!!!!");
-        model.addAttribute("userScore", game.getCoinFlip().getUserScore());
-        model.addAttribute("computerScore", game.getCoinFlip().getComputerScore());
-        model.addAttribute("turns", game.getCoinFlip().getTurns());
-        model.addAttribute("winRate", winRate);
-
-        return "index";
-    }
-
- */
+    //Användaren fortsätter spela så många omgångar hen vill
     @PostMapping("/flip")
     public String publishFlip(@RequestParam String choice, Model model) {
         double resultAsDouble = randomNumberGenerator.generateRandomNumber();
