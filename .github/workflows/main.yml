@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+env:
+  docker_tag: ''
 
 jobs:
   unit-tests:
@@ -94,7 +96,8 @@ jobs:
           images: ghcr.io/annasjoberg/singlaslant-individual
           flavor: |
             latest=auto  # Handle latest tag automatically
-            prefix=pr-
+      - name: Set Image Tag
+        run: echo "docker_tag=${{ steps.meta.outputs.tags }}" >> $GITHUB_ENV
       - name: Docker Login
         uses: docker/login-action@v3
         with:
@@ -106,7 +109,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}, ghcr.io/annasjoberg/singlaslant-individual:latest
 
   mock-deployment:
     runs-on: ubuntu-latest
@@ -114,5 +117,5 @@ jobs:
     steps:
       - name: Mock Deployment
         run: |
-          echo "ghcr.io/annasjoberg/singlaslant-individual:${{ steps.meta.outputs.tags }}"
+          echo "ghcr.io/annasjoberg/singlaslant-individual:${{ env.docker_tag }}"
           echo "ghcr.io/annasjoberg/singlaslant-individual:latest"
