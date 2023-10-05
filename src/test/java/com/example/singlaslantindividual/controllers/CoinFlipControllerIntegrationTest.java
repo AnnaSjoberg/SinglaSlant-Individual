@@ -30,6 +30,12 @@ public class CoinFlipControllerIntegrationTest {
     }
 
     @Test
+    void publishFlipStatus200ChoiceInvalid() throws Exception {
+        this.mockMvc.perform(post("/flip?choice=" + "tummy"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void publishFlipReturnsViewIndex() throws Exception {
         this.mockMvc.perform(post("/flip?choice=" + "tails"))
                 .andExpect(view().name("index"));
