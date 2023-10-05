@@ -10,31 +10,22 @@ import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.model.RoundResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 class GameTest {
 
     Game game;
-    @InjectMocks
-    private Game mockGame;
-    @Mock
-    private CoinFlip mockCoinFlip;
-
     CoinFlip coinFlip;
 
     @BeforeEach
     void setup() {
         coinFlip = new CoinFlip();
         game = new Game(coinFlip);
-        MockitoAnnotations.openMocks(this);
     }
 
 
     @Test
     void userWinsWithHeads() {
-        RoundResult roundResult = mockGame.playGame("heads", 0.6);
+        RoundResult roundResult = game.playGame("heads", 0.6);
         assertEquals(roundResult.getWinner(), "User");
     }
 
