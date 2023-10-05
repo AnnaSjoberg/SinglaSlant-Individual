@@ -25,7 +25,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation ("io.rest-assured:rest-assured:5.3.2")
     testImplementation("io.rest-assured:spring-mock-mvc:5.3.2")
-
+    implementation("org.jsoup:jsoup:1.16.1")
 }
 tasks {
     val commonTestSettings: Test.() -> Unit = {
