@@ -1,6 +1,5 @@
 package com.example.singlaslantindividual.controllers;
 
-import com.example.singlaslantindividual.jacocoutil.Generated;
 import com.example.singlaslantindividual.model.CoinFlip;
 import com.example.singlaslantindividual.model.RoundResult;
 import com.example.singlaslantindividual.services.Game;
@@ -22,12 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * - WinRateCalculator
  * - RoundResult
  * - RandomNumberGenerator
- * <p>
- * Is excluded from the JaCoCo test report
  */
 
 @Controller
-@Generated
 public class CoinFlipController {
 
     private List<RoundResult> rounds = new ArrayList<>();
@@ -43,7 +39,6 @@ public class CoinFlipController {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    //Startsida där användaren väljer heads/tails
     @GetMapping("/")
     public String index(Model model) {
         CoinFlip coinFlip = game.getCoinFlip();
@@ -56,8 +51,6 @@ public class CoinFlipController {
         return "index";
     }
 
-    //När användaren valt heads/tails uppdateras sidan med relevant information i /flip-endpointen
-    //Användaren fortsätter spela så många omgångar hen vill
     @PostMapping("/flip")
     public String publishFlip(@RequestParam String choice, Model model) {
         double resultAsDouble = randomNumberGenerator.generateRandomNumber();

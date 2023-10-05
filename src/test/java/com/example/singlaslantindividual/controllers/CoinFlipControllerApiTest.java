@@ -90,7 +90,7 @@ public class CoinFlipControllerApiTest {
         // Get the initial number of turns from the current endpoint
         int startingTurns = getTurnsValue();
 
-        // Simulate a very high number of rounds. Limit to 1000 now for capacity reasons
+        // Simulate a very high number of rounds. Limit to 1000 for capacity reasons
         int numberOfRounds = 1000;
         playRounds(numberOfRounds);
         int expectedTurns = startingTurns + numberOfRounds;
