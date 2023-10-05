@@ -54,15 +54,15 @@ public class CoinFlipControllerApiTest {
                 .body(containsString("WINS!!!!!"));
     }
 
- //   @Test
-    public void onOkPublishFlipEndpointShouldContainNotAllowedWhenChoiceIsInvalid() {
+    @Test
+    public void onOkPublishFlipEndpointShouldContainTryAgainWhenChoiceIsInvalid() {
         given()
                 .param("choice", "tummy")
                 .when()
                 .post("/flip")
                 .then()
                 .statusCode(200)
-                .body(containsString("not allowed"));
+                .body(containsString("try again!"));
     }
 
     @Test
